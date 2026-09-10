@@ -69,7 +69,29 @@ def draw_letters():
     # print(f"This is the remaining letters and quantity in the dictionary: {alphabet_dictionary}")
 
 def uses_available_letters(word, letter_bank):
-    pass
+
+    # upper_case_word = word.upper()
+    # print(upper_case_word)
+
+    copy_letter_bank = []
+    for letter in letter_bank:
+        lower_letter = letter.lower()
+        copy_letter_bank.append(lower_letter)
+        
+    # print(copy_letter_bank)
+
+    lower_case_word = word.lower()
+
+    word_in_letter_bank = True
+
+    for letter in lower_case_word:
+        if letter in copy_letter_bank:
+            copy_letter_bank.remove(letter)
+        else:
+            word_in_letter_bank = False
+
+    return word_in_letter_bank
+
 
 def score_word(word):
     pass
