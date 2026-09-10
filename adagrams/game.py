@@ -77,7 +77,7 @@ def uses_available_letters(word, letter_bank):
     for letter in letter_bank:
         lower_letter = letter.lower()
         copy_letter_bank.append(lower_letter)
-        
+
     # print(copy_letter_bank)
 
     lower_case_word = word.lower()
@@ -94,7 +94,59 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-    pass
+    # Returns an integer which is the total score of the word
+    # If the length of the word is 7-10, it gets additional 8 points
+    # Each letter has its own number of points
+
+    word_list = list(word.upper())
+    word_uppercase = word.upper()
+    total_points = 0
+    points_dictionary = {
+        "A" : 1,
+        "E" : 1,
+        "I" : 1,
+        "O" : 1,
+        "U" : 1,
+        "L" : 1,
+        "N" : 1,
+        "R" : 1,
+        "S" : 1,
+        "T" : 1,
+        "D" : 2,
+        "G" : 2,
+        "B" : 3,
+        "C" : 3,
+        "M" : 3,
+        "P" : 3,
+        "F" : 4,
+        "H" : 4,
+        "V" : 4,
+        "W" : 4,
+        "Y" : 4,
+        "K" : 5,
+        "J" : 8,
+        "X" : 8,
+        "Q" : 10,
+        "Z" : 10
+    }
+
+    if len(word) > 6 and len(word) < 11:
+        total_points += 8
+
+    print(f"This is the word {word}")
+    print(f"This is the total points {total_points}")
+    
+
+    # Iterate through the dictionary (key: letter, value: point), if a key is in the word_list, update the total points.
+    for i in range(len(word_list)):
+        for key, value in points_dictionary.items():
+            
+            if key == word_list[i]:
+                total_points += value
+
+    
+            
+    return total_points
 
 def get_highest_word_score(word_list):
     pass
