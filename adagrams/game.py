@@ -150,38 +150,66 @@ def score_word(word):
 
 def get_highest_word_score(word_list):
 
-    dictionary_word_and_its_point = {}
-    winning_word = word_list[0]
-    winning_total_point = score_word(word_list[0])
-    dictionary_highest_scores = {}
-    final_winner = []
-    shortest_word = None 
-    shortest_length = 0
-    lowest_point = 0
-    list_winning_words = []
-    list_winning_words_length = []
+    # dictionary_word_and_its_point = {}
+    # winning_word = word_list[0]
+    # winning_total_point = score_word(word_list[0])
+    winning_word = ""
+    winning_total_point = 0
+    # dictionary_highest_scores = {}
+    # final_winner = []
+    # final_winner_tuple = ()
+    # shortest_word = None 
+    # shortest_length = 0
+    # lowest_point = 0
+    # list_winning_words = []
+    # list_winning_words_length = []
     
 
-    for i in range(1, len(word_list)):
-        # for word in word_list:
-            # total_point_per_word = score_word(word)
-            # dictionary_word_and_its_point[word] = total_point_per_word
-        new_winning_total_point = score_word(word_list[i])
-        if new_winning_total_point > winning_total_point:
+    # for i in range(1, len(word_list)):
+    for word in word_list:
+
+        # Code that I got with Kage's help
+        # new_winning_total_point = score_word(word_list[i])
+        # if new_winning_total_point > winning_total_point:
+        #     winning_total_point = new_winning_total_point
+        #     winning_word = word_list[i]
+
+        # elif winning_total_point == new_winning_total_point:
+        #     if len(word_list[i]) == 10 and len(word_list[i]) != len(winning_word):
+        #         winning_word = word_list[i]
+        #         winning_total_point = score_word(word_list[i])
+        #     if len(winning_word) < 10 and len(word_list[i]) < len(winning_word):
+        #         winning_word = word_list[i]
+        #         winning_total_point = score_word(word_list[i])
+
+        #Code that doesn't work
+        # new_winning_total_point = score_word(word_list[i])
+        new_winning_total_point = score_word(word)
+
+        if winning_total_point < new_winning_total_point:
             winning_total_point = new_winning_total_point
-            winning_word = word_list[i]
+            # winning_word = word_list[i]
+            winning_word = word
 
         elif winning_total_point == new_winning_total_point:
-            if len(word_list[i]) >= 10 and len(word_list[i]) != len(winning_word):
-                winning_word = word_list[i]
-                winning_total_point = score_word(word_list[i])
-            if len(winning_word) < 10 and len(word_list[i]) < len(winning_word):
-                winning_word = word_list[i]
-                winning_total_point = score_word(word_list[i])
+            # if len(word_list[i]) == 10 and len(winning_word) != 10: #why not just use len(winning_word)
+            if len(word) == 10 and len(winning_word) != 10:
+                # winning_word = word_list[i]
+                winning_word = word
+                winning_total_point = new_winning_total_point
 
-        
+            # elif len(winning_word) != 10 and len(word_list[i]) < len(winning_word): #why elif/if, why can't use !=/<
+            # elif len(winning_word) != 10 and len(word) < len(winning_word):
+            elif len(winning_word) != 10 and len(word) < len(winning_word):
+                # winning_word = word_list[i]
+                winning_word = word
+                winning_total_point = new_winning_total_point
 
     return (winning_word, winning_total_point)
+
+    # for word in word_list:
+        #     total_point_per_word = score_word(word)
+        #     dictionary_word_and_its_point[word] = total_point_per_word
 
     # Get the highest scores dictionary 
     # for key, value in dictionary_word_and_its_point.items():
@@ -201,17 +229,51 @@ def get_highest_word_score(word_list):
     #     current_key = dictionary_highest_scores_tuple[i][0]
     #     current_value = dictionary_highest_scores_tuple[i][1]
 
-    #     # list_winning_words.append(key)
-    #     # list_winning_words_length.append(len(key))
+    # #     # list_winning_words.append(key)
+    # #     # list_winning_words_length.append(len(key))
     #     for j in range(i):
     #         previous_length_word = len(dictionary_highest_scores_tuple[j][0])
     #         previous_key = dictionary_highest_scores_tuple[j][0]
     #         previous_value = dictionary_highest_scores_tuple[j][1]
 
-    #         if current_length_word == previous_length_word and current_value == previous_value:
-    #             final_winner.append(previous_key)
-    #             final_winner.append(previous_value)
-    #             final_winner_tuple = tuple(final_winner)
+    #         # If there is only one tuple in the tuple
+    #         if len(dictionary_highest_scores_tuple) == 2:
+    #             # final_winner.append(current_key)
+    #             # final_winner.append(current_value)
+    #             # final_winner_tuple = tuple(final_winner)
+    #             final_winner_tuple = (current_key, current_value)
+
+    #         # This conditional is to get the first winner in the list
+    #         elif current_length_word < previous_length_word:
+    #             # final_winner.append(current_key)
+    #             # final_winner.append(current_value)
+    #             # final_winner_tuple = tuple(final_winner)
+    #             final_winner_tuple = (current_key, current_value)
+
+    #         # This conditional is to make the first word that has 10 letters win
+    #         elif current_length_word == 10:
+    #             # final_winner.append(current_key)
+    #             # final_winner.append(current_value)
+    #             # final_winner_tuple = tuple(final_winner)
+    #             final_winner_tuple = (current_key, current_value)
+
+            # This conditional is to get the first word if the total points and the length of the words is the same
+            # elif len(dictionary_highest_scores_tuple) > 2 and len(key)
+                
+            # This conditional is to get the word with the shortest length
+            # if len(key) > len(dictionary_highest_scores_tuple[i+1][0]) and len(key) < 10:
+                #     final_winner.append(key)
+                #     final_winner.append(value)
+                #     final_winner_tuple = tuple(final_winner)
+                    
+                
+                # if len(key) < 10:
+                #     if value > lowest_point:
+                #         lowest_point = value
+                #         final_winner.append(key)
+                #         final_winner.append(value)
+                #         final_winner_tuple = tuple(final_winner)
+            
                 
 
     # print(f"This is all the winning words: {list_winning_words}")
@@ -230,7 +292,7 @@ def get_highest_word_score(word_list):
         #     final_winner.append(current_value)
         #     final_winner_tuple = tuple(final_winner)
 
-    # return final_winner_tuple
+    return final_winner_tuple
 
         # This conditional is to get the first word if the total points and the length of the words is the same
         # elif len(dictionary_highest_scores_tuple) > 2 and len(key)
