@@ -51,7 +51,7 @@ def draw_letters():
         letter_index = randint(0, len(alphabet_pool) - 1)
         letter = alphabet_pool[letter_index]
         hand.append(letter)     
-        alphabet_pool.remove(letter)
+        alphabet_pool.remove(alphabet_pool[letter_index])
 
     return hand
 
