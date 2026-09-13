@@ -131,13 +131,11 @@ def score_word(word):
     if len(word) > 6 and len(word) < 11:
         total_points += 8
 
-    # Iterate through the dictionary (key: letter, value: point), if a key is in the word_list, update the total points.
-    for i in range(len(word_list)):
-        for key, value in points_dictionary.items():
-            
-            if key == word_list[i]:
-                total_points += value
-            
+    # Iterate to see if a letter exists in the list and in the dictionary, then add the points
+    for letter in word_list:
+        if letter in points_dictionary:
+            total_points += points_dictionary[letter]
+
     return total_points
 
 def get_highest_word_score(word_list):
